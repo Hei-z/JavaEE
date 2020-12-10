@@ -1,0 +1,81 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>购物车</title>
+    <%@include file="/include/base.jsp" %>
+    <script>
+        $(function () {
+            $(".countInput").change(function () {
+                var count = $(this).val();
+                // 获取自定义属性的值
+                var id = $(this).attr("updateId");
+                location.href = "client/CartServlet?method=update&id=" + id + "&count=" + count;
+            });
+
+            $("#clearBtn").click(function () {
+                // confirm会弹出对话框，如果用户点了确定就发送请求，点了取消就不发送
+                if (!confirm("确定清空购物车吗？")) {
+                    return false;
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+
+<div id="header">
+    <img class="logo_img" alt="" src="static/img/logo.gif">
+    <span class="wel_word">购物车</span>
+    <%@include file="/include/user-info.jsp" %>
+</div>
+
+<div id="main">
+
+    <c:if test="${!empty cart.items}">
+        <table>
+            <tr>
+                <td>商品名称</td>
+                <td>数量</td>
+                <td>单价</td>
+                <td>金额</td>
+                <td>操作</td>
+            </tr>
+            <c:forEach items="${cart.items}" var="carItem">
+                <tr>
+                    <td>${carItem.book.title}</td>
+                    <td>
+                            <%--自定义属性updateId 存放book.id--%>
+                        <input updateId="${carItem.book.id}" class="countInput" type="text" name="count"
+                               value="${carItem.count}"/>
+                    </td>
+                    <td>${carItem.book.price}</td>
+                    <td>${carItem.totalPrice}</td>
+                    <td><a href="client/CartServlet?method=delete&id=${carItem.book.id}">删除</a></td>
+                </tr>
+            </c:forEach>
+
+        </table>
+
+        <div class="cart_info">
+            <span class="cart_span">购物车中共有<span class="b_count">${cart.totalCount}</span>件商品</span>
+            <span class="cart_span">总金额<span class="b_price">${cart.totalPrice}</span>元</span>
+            <span class="cart_span"><a id="clearBtn" href="client/CartServlet?method=clear">清空购物车</a></span>
+            <span class="cart_span"><a href="pages/cart/checkout.html">去结账</a></span>
+        </div>
+    </c:if>
+    <c:if test="${empty cart.items}">
+        <h1>购物车为空，<a href="index.jsp">去主页购买</a></h1>
+    </c:if>
+
+
+</div>
+
+<div id="bottom">
+		<span>
+			尚硅谷书城.Copyright &copy;2015
+		</span>
+</div>
+</body>
+</html>

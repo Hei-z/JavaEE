@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+         version="3.1">
+    <filter>
+        <filter-name>HelloFilter</filter-name>
+        <filter-class>com.atguigu.filter.HelloFilter</filter-class>
+    </filter>
+    <filter>
+        <filter-name>AFilter</filter-name>
+        <filter-class>com.atguigu.filter.AFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>HelloFilter</filter-name>
+        <!--拦截/hello.jsp的请求-->
+        <url-pattern>/hello.jsp</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>AFilter</filter-name>
+        <url-pattern>/page/*</url-pattern>
+        <url-pattern>/a.jsp</url-pattern>
+    </filter-mapping>
+</web-app>

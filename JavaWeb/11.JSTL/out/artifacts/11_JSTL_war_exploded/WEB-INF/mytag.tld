@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<taglib xmlns="http://java.sun.com/xml/ns/javaee"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-jsptaglibrary_2_1.xsd"
+        version="2.1">
+
+    <!--标签库的版本-->
+    <tlib-version>1.0</tlib-version>
+    <!--指定当前标签库所有标签的前缀名-->
+    <short-name>my</short-name>
+    <!--标签库的唯一标识-->
+    <uri>http://mycompany.com/tags/my</uri>
+
+    <!-- Invoke 'Generate' action to add tags or functions -->
+    <!--使用tag标签定义一个标签-->
+    <tag>
+        <!--定义标签名-->
+        <name>hello</name>
+        <!--定义该标签的实现类-->
+        <tag-class>com.atguigu.tag.MyTag</tag-class>
+        <!--可以写
+         empty：是一个空标签，没有标签体，类似html中的<br>
+         JSP：可以传入JSP表达式、JSP脚本片段、el表达式等...，scriptless可以传的，JSP也可以传
+         scriptless：不可以传入JSP表达式、JSP脚本片段等...只能传el表达式和其他内容
+         tagdependent：传入是什么就是什么，服务器不会解析
+         -->
+        <body-content>empty</body-content>
+
+        <attribute>
+            <!--name指定属性名-->
+            <name>msg</name>
+            <!--表示这个属性必传-->
+            <required>true</required>
+            <!--runtime expression value：表示该属性是否可以用jsp表达式，el表达式等
+            例如设置了true，写了name="${xx}"，那么会解析该el表达式-->
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+    </tag>
+
+</taglib>

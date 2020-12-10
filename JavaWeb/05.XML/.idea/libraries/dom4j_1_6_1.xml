@@ -1,0 +1,15 @@
+<component name="libraryTable">
+  <library name="dom4j-1.6.1">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/resources/dom4j-1.6.1.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="file://F:/学习资料/尚硅谷/Java高级/JavaWeb/资料/05-XML &amp; Tomcat/笔记/dom4j-1.6.1/docs/benchmarks/xpath" />
+      <root url="file://F:/学习资料/尚硅谷/Java高级/JavaWeb/资料/05-XML &amp; Tomcat/笔记/dom4j-1.6.1/src/java" />
+      <root url="file://F:/学习资料/尚硅谷/Java高级/JavaWeb/资料/05-XML &amp; Tomcat/笔记/dom4j-1.6.1/src/samples" />
+      <root url="file://F:/学习资料/尚硅谷/Java高级/JavaWeb/资料/05-XML &amp; Tomcat/笔记/dom4j-1.6.1/src/test" />
+      <root url="file://F:/学习资料/尚硅谷/Java高级/JavaWeb/资料/05-XML &amp; Tomcat/笔记/dom4j-1.6.1/xdocs/benchmarks/xpath" />
+    </SOURCES>
+  </library>
+</component>

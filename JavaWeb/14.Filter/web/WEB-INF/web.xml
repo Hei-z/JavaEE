@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+         version="3.1">
+
+    <filter>
+        <filter-name>HelloFilter</filter-name>
+        <filter-class>com.atguigu.filter.HelloFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>HelloFilter</filter-name>
+        <!--拦截/hello.jsp的请求-->
+        <url-pattern>/hello.jsp</url-pattern>
+        <!--dispatcher中可以填四个值
+        REQUEST：拦截直接请求的（默认），直接请求这个地址会被拦截
+        FORWARD：拦截转发过来的
+        INCLUDE：拦截包含的，比如我们在index.jsp中采用<jsp:include page="hello.jsp"/>
+            动态包含了hello.jsp页面，那么此时包含失败，即hello.jsp的内容不会包含到index.jsp中
+            注意要动态包含，静态包含没用
+        ERROR：拦截发生错误的，如果我们在web.xml中配置了全局错误页面，当某个页面发生错误时，错误时会
+            跳转到该全局错误页面，此时如果配置ERROR，那么就跳不过去了。
+        -->
+        <!--可以配置多个
+        那么直接请求和转发都会拦截
+        <dispatcher>REQUEST</dispatcher>
+        <dispatcher>FORWARD</dispatcher>
+        -->
+        <dispatcher>FORWARD</dispatcher>
+    </filter-mapping>
+    <servlet>
+        <servlet-name>HelloServlet</servlet-name>
+        <servlet-class>com.atguigu.servlet.HelloServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>HelloServlet</servlet-name>
+        <url-pattern>/HelloServlet</url-pattern>
+    </servlet-mapping>
+
+
+    <filter>
+        <filter-name>AFilter</filter-name>
+        <filter-class>com.atguigu.filter.AFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>AFilter</filter-name>
+        <url-pattern>/page/*</url-pattern>
+        <url-pattern>/a.jsp</url-pattern>
+    </filter-mapping>
+
+</web-app>
