@@ -1,0 +1,38 @@
+server:
+  port: 8401
+
+spring:
+  application:
+    name: cloudalibaba-sentinel-service
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848 #Nacos服务注册中心地址
+    sentinel:
+      transport:
+        dashboard: localhost:8080 #配置Sentinel dashboard地址
+        # The port number specified in spring.cloud.sentinel.transport.port
+        # will start an HTTP Server on the corresponding server of the application,
+        # and this server will interact with the Sentinel dashboard.
+        # 就是会开启一个进程和Sentinel dashboard进行交互
+        port: 8719 #默认8719，假如被占用了会自动从8719开始依次+1扫描。直至找到未被占用的端口
+      # Configurations about datasource, like 'nacos', 'apollo', 'file', 'zookeeper'.
+      datasource:
+        # 配置nacos数据源，将sentinel的配置信息写到nacos中
+        ds1:
+          nacos:
+            server-addr: localhost:8848
+            dataId: cloudalibaba-sentinel-service
+            groupId: DEFAULT_GROUP
+            data-type: json
+            rule-type: flow
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
+feign:
+  sentinel:
+    enabled: true # 激活Sentinel对Feign的支持
